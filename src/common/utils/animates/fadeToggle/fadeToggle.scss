@@ -1,0 +1,55 @@
+.fadeOut {
+	animation-duration: 0.3s;
+	animation-timing-function: ease-in;
+	animation-name: fadeOut;
+	animation-fill-mode: forwards;
+}
+
+@keyframes fadeOut {
+	100% {
+		opacity: 0;
+		visibility: hidden;
+	}
+	99% {
+		opacity: 0;
+	}
+	0% {
+		opacity: 1;
+		visibility: visible;
+	}
+}
+
+.fadeIn {
+	animation-duration: 0.3s;
+	animation-timing-function: ease-in;
+	animation-name: fadeIn;
+	animation-fill-mode: forwards;
+}
+
+@keyframes fadeIn {
+	100% {
+		opacity: 1;
+	}
+	0% {
+		opacity: 0;
+		visibility: visible;
+	}
+}
+
+//for vue
+
+.fade-enter-active {
+	animation: fadeToggle 0.3s;
+}
+.fade-leave-active {
+	animation: fadeToggle 0.3s reverse;
+}
+
+@keyframes fadeToggle {
+	0% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
+	}
+}

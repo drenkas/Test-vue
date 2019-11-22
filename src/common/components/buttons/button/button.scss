@@ -1,0 +1,132 @@
+.button {
+	border: 1px solid $color_titleText;
+	display: inline-block;
+	border-radius: 20px;
+	@include font(1, 14, b, 19px);
+	color: $color_titleText;
+	cursor: pointer;
+	padding: 8px 20px;
+	transition: 0.3s;
+	text-transform: uppercase;
+	position: relative;
+	overflow: hidden;
+	background-color: $color_white;
+
+	&:hover {
+		background-color: #ececec;
+		text-decoration: none;
+		color: $color_titleText;
+	}
+
+	&:active {
+		background-color: $color_titleText;
+		color: $color_white;
+	}
+
+	&_bind {
+		border: none;
+		background-color: unset;
+		background-image: $color_orange_gr;
+		color: $color_white;
+
+		&:hover {
+			color: $color_white;
+			background-image: linear-gradient(90deg, #f4b152 0%, #ff7c62 100%);
+		}
+
+		&:active {
+			border: none;
+			background: linear-gradient(90deg, #d88917 0%, #e6492a 100%);
+		}
+	}
+
+	&_recommend {
+		border: none;
+		background-color: unset;
+		background-image: linear-gradient(90deg, #f4b152 0%, #ff7c62 100%);
+		color: $color_btnText;
+
+		&:hover {
+			color: $color_white;
+
+			&::after {
+				opacity: 0;
+			}
+		}
+
+		&:active {
+			border: none;
+			color: $color_white;
+			background: linear-gradient(90deg, #d88917 0%, #e6492a 100%);
+			&::after {
+				opacity: 0;
+			}
+		}
+
+		&::after {
+			content: '';
+			width: calc(100% - 2px);
+			height: calc(100% - 2px);
+			position: absolute;
+			top: 1px;
+			left: 1px;
+			border-radius: 20px;
+			z-index: 1;
+			opacity: 1;
+			background: white;
+			transition: 0.3s linear;
+		}
+	}
+
+	&_next {
+		border: none;
+		background-color: unset;
+		background-image: $color_green_gr;
+		color: $color_white;
+
+		&:hover {
+			color: $color_white;
+			background-image: linear-gradient(90deg, #b0df76 0%, #6dbb84 100%);
+		}
+
+		&:active {
+			border: none;
+			background: linear-gradient(90deg, #89bf44 0%, #369553 100%);
+		}
+	}
+
+	&_disabled,
+	&:disabled {
+		color: $color_grey3;
+		background: $color_grey1;
+		border: none;
+		box-shadow: none;
+		cursor: default;
+
+		&:hover {
+			border: none;
+			color: $color_grey3;
+			background: $color_grey1;
+
+			&::after {
+				opacity: 0;
+			}
+		}
+
+		&:active {
+			border: none;
+			color: $color_grey3;
+			background: $color_grey1;
+		}
+	}
+}
+
+.button__text {
+	position: relative;
+	z-index: 2;
+	text-align: center;
+}
+
+.button_small {
+	@include font(1, 10, b, 14px);
+}

@@ -1,0 +1,51 @@
+html,
+body {
+	height: 100%;
+}
+
+* {
+	padding: 0;
+	margin: 0;
+
+	&,
+	&::before,
+	&::after {
+		box-sizing: border-box;
+	}
+
+	&:focus,
+	&:active {
+		outline: none;
+	}
+}
+
+.layoutMain {
+	min-width: 320px;
+}
+
+.body_hidden {
+	overflow: hidden;
+	height: 100%;
+}
+
+.container {
+	margin: 0 auto;
+	width: 1180px;
+
+	@include media-t {
+		width: 100%;
+	}
+
+	@include media-m {
+		width: 100%;
+	}
+
+	@include media-sm {
+		width: 100%;
+	}
+
+	&_centered {
+		display: flex;
+		justify-content: center;
+	}
+}
