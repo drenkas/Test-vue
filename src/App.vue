@@ -19,18 +19,13 @@ export default {
 	},
 	methods: {
 		...mapActions({
-			readCookie: 'global/readCookie',
-			setRef: 'global/setRef',
+			readUser: 'global/readUser',
 		}),
 		async changeRoute(to) {
-			if (to.query.ref_url) {
-				this.setRef(to.query.ref_url)
-			}
-			const cookie = await this.readCookie()
-			console.log(cookie)
-			if (cookie && to.fullPath !== route.authed)
-				this.$router.push(route.authed)
-			if (!cookie && to.fullPath === route.authed) this.$router.push(route.auth)
+			const user = await this.readUser()
+			console.log(user)
+			if (user && to.fullPath !== route.authed) this.$router.push(route.authed)
+			if (!user && to.fullPath === route.authed) this.$router.push(route.auth)
 		},
 	},
 }

@@ -1,10 +1,7 @@
-import axios from 'axios'
 import firebase from 'firebase/app'
 
 // initial state
-const state = {
-	tokenList: ['soghGg8g9DD8j4', 'GJhfv87hG090', 'GJdfgvbcv5454k'],
-}
+const state = {}
 
 // getters
 const getters = {}
@@ -17,9 +14,20 @@ const actions = {
 	// eslint-disable-next-line no-unused-vars
 	async signIn({ state }, { email, password }) {
 		try {
-			console.log('signIn')
+			const user = await firebase
+				.auth()
+				.signInWithEmailAndPassword(email, password)
+			console.log(user)
+			return {
+				status: true,
+			}
 		} catch (error) {
-			throw error
+			console.log('error', error)
+			return {
+				status: false,
+				code: error.code,
+				message: error.message,
+			}
 		}
 	},
 	async signUp({ state }, { email, password }) {

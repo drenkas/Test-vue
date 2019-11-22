@@ -1,14 +1,14 @@
 // import axios from 'axios'
-import Cookies from 'js-cookie'
+import firebase from 'firebase/app'
 
 // initial state
 const state = {
-	ref_url: '',
+	authed: '',
 }
 
 // getters
 const getters = {
-	getRef: state => state.ref_url,
+	authedtRef: state => state.authed,
 }
 
 const mutationTypes = {
@@ -17,35 +17,21 @@ const mutationTypes = {
 
 // actions
 const actions = {
-	async setRef({ commit }, url) {
+	async readUser() {
 		try {
-			commit('SET_REF', url)
+			const result = firebase.auth().onAuthStateChanged(function(user) {
+				console.log(user)
+				return user ? true : false
+			})
+			console.log('read', result)
+			return result
 		} catch (error) {
 			throw error
 		}
 	},
-	async setCookie() {
+	async removeUser() {
 		try {
-			Cookies.set('jwt_token', jwt_token)
-			Cookies.set('client_uuid', client_uuid)
-		} catch (error) {
-			throw error
-		}
-	},
-	async readCookie() {
-		try {
-			const token = Cookies.get('jwt_token')
-			const id = Cookies.get('client_uuid')
-			if (token && id) return true
-			return false
-		} catch (error) {
-			throw error
-		}
-	},
-	async removeCookie() {
-		try {
-			Cookies.remove('jwt_token')
-			Cookies.remove('client_uuid')
+			firebase.auth().signOut()
 		} catch (error) {
 			throw error
 		}
