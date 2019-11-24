@@ -30,19 +30,7 @@ body {
 
 .container {
 	margin: 0 auto;
-	width: 1180px;
-
-	@include media-t {
-		width: 100%;
-	}
-
-	@include media-m {
-		width: 100%;
-	}
-
-	@include media-sm {
-		width: 100%;
-	}
+	width: 100%;
 
 	&_centered {
 		display: flex;

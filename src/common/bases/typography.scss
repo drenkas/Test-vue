@@ -4,11 +4,6 @@ body,
 	@include font(1, 16, r, 26px);
 }
 
-section {
-	// @include spaceBotomBlock;
-	// border: 1px dotted red;//temp
-}
-
 a {
 	transition: 0.2s;
 	text-decoration: none;
@@ -79,36 +74,13 @@ h6 {
 }
 
 // custoom list
-ul,
-ol {
-	margin: 0;
-	padding: 0;
-	list-style: none;
-	list-style-position: inside;
-}
-
-ul li,
-ol li {
-	position: relative;
-	list-style: none;
-	@include font(1, 16, r, 1.06);
-	padding-left: 25px;
-	margin-bottom: 20px;
-}
-
-ul {
-	li::before {
-		content: '';
-		display: block;
-		position: absolute;
-		width: 10px;
-		// min-width: 10px;
-		height: 4px;
-		background-color: $color_black;
-		left: 0;
-		top: 7px;
-	}
-}
+// ul,
+// ol {
+// 	margin: 0;
+// 	padding: 0;
+// 	list-style: none;
+// 	list-style-position: inside;
+// }
 
 ol {
 	counter-reset: my-awesome-counter;
@@ -137,8 +109,4 @@ table {
 	td {
 		padding: 14px 15px;
 	}
-}
-
-img {
-	// max-width: 100%;
 }

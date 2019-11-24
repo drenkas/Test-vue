@@ -17,9 +17,14 @@ const routes = [
 	},
 
 	{
-		path: route.authed,
-		name: 'authed',
-		component: () => import('../views/TempHome.vue'),
+		path: route.table,
+		name: 'table',
+		component: () => import('../views/Table.vue'),
+	},
+	{
+		path: route.task,
+		name: 'task',
+		component: () => import('../views/Task.vue'),
 	},
 
 	{

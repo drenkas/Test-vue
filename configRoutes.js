@@ -1,5 +1,6 @@
 export default {
 	root: '/',
 	auth: '/auth',
-	authed: '/authed',
+	table: '/table',
+	task: '/task',
 }

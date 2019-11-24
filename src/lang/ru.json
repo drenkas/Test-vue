@@ -4,19 +4,38 @@
 		"email_placeholder": "Введите адрес электронной почты",
 		"password": "Пароль",
 		"password_placeholder": "Введите пароль",
-		"newPassword": "Новый пароль"
+		"title": "Название",
+		"title_placeholder": "Введите название",
+		"text": "Текст",
+		"text_placeholder": "Введите текст"
 	},
 	"notFound": "Страница не найдена",
 	"signIn": {
 		"title": "Войдите в свой профиль",
 		"signUp": "РЕГИСТРАЦИЯ",
 		"enter": "ВОЙТИ"
-		
 	},
 	"signUp": {
 		"title": "Зарегистрируйся",
 		"signIn": "АВТОРИЗАЦИЯ",
 		"enter": "ОТПРАВИТЬ"
-		
+	},
+	"task": {
+		"create": "Создать запись",
+		"edit": "Редактировать запись",
+		"back": "Вернуться",
+		"enter": "Сохранить"
+	},
+	"table": {
+		"logout": "Выйти",
+		"create": "Создать запись",
+		"edit": "Редактировать",
+		"remove": "Удалить",
+		"thead": {
+			"id": "ID",
+			"date": "Date",
+			"title": "Title",
+			"text": "Description"
+		}
 	}
 }

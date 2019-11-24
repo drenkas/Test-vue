@@ -6,26 +6,38 @@
 	
 </template>
 <script>
-import { mapActions } from 'vuex'
+import { mapActions, mapGetters } from 'vuex'
 import route from '../configRoutes'
 export default {
 	data: function() {
-		return {}
+		return {
+			accessControl: [route.task, route.table],
+		}
 	},
 	watch: {
 		$route(to) {
 			this.changeRoute(to)
 		},
+		getAuthed() {
+			this.changeRoute(this.$route.path)
+		},
+	},
+	computed: {
+		...mapGetters({
+			getAuthed: 'authentication/getAuthed',
+		}),
+	},
+	created() {
+		this.readUser()
 	},
 	methods: {
 		...mapActions({
-			readUser: 'global/readUser',
+			readUser: 'authentication/readUser',
 		}),
 		async changeRoute(to) {
-			const user = await this.readUser()
-			console.log(user)
-			if (user && to.fullPath !== route.authed) this.$router.push(route.authed)
-			if (!user && to.fullPath === route.authed) this.$router.push(route.auth)
+			const control = this.accessControl.indexOf(to.path)
+			if (this.getAuthed && control === -1) this.$router.push(route.table)
+			if (!this.getAuthed && control !== -1) this.$router.push(route.auth)
 		},
 	},
 }

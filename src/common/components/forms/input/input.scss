@@ -76,12 +76,14 @@
 			opacity: 1 !important;
 		}
 	}
-	input {
+	input,
+	textarea {
 		border: none;
 		width: 100%;
 		&::placeholder {
 			color: #b2bcca;
 		}
+		resize: none;
 	}
 
 	.inputContainer__icn {

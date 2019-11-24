@@ -1,28 +1,25 @@
 import firebase from 'firebase/app'
 
 // initial state
-const state = {}
+const state = {
+	authed: false,
+}
 
 // getters
-const getters = {}
-
-// eslint-disable-next-line no-unused-vars
-const mutationTypes = {}
+const getters = {
+	getAuthed: state => state.authed,
+}
 
 // actions
 const actions = {
-	// eslint-disable-next-line no-unused-vars
-	async signIn({ state }, { email, password }) {
+	async signIn({ dispatch }, { email, password }) {
 		try {
-			const user = await firebase
-				.auth()
-				.signInWithEmailAndPassword(email, password)
-			console.log(user)
+			await firebase.auth().signInWithEmailAndPassword(email, password)
+			dispatch('readUser')
 			return {
 				status: true,
 			}
 		} catch (error) {
-			console.log('error', error)
 			return {
 				status: false,
 				code: error.code,
@@ -30,21 +27,35 @@ const actions = {
 			}
 		}
 	},
+	// eslint-disable-next-line no-unused-vars
 	async signUp({ state }, { email, password }) {
 		try {
-			const user = await firebase
-				.auth()
-				.createUserWithEmailAndPassword(email, password)
-			console.log(user)
+			await firebase.auth().createUserWithEmailAndPassword(email, password)
 			return {
 				status: true,
 			}
 		} catch (error) {
-			console.log('error', error)
 			return {
 				status: false,
 				message: error.message,
 			}
+		}
+	},
+	async readUser({ commit }) {
+		try {
+			firebase.auth().onAuthStateChanged(function(user) {
+				commit('setAuthed', user ? true : false)
+			})
+		} catch (error) {
+			throw error
+		}
+	},
+	async removeUser({ dispatch }) {
+		try {
+			await firebase.auth().signOut()
+			dispatch('readUser')
+		} catch (error) {
+			throw error
 		}
 	},
 }
@@ -52,6 +63,9 @@ const actions = {
 // mutations
 const mutations = {
 	// payload is parameter that mutation takes. Can be any shape
+	setAuthed(state, payload) {
+		state.authed = payload
+	},
 }
 
 export default {

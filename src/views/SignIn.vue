@@ -31,8 +31,7 @@
 
 <script>
 import { ValidationProvider, ValidationObserver } from 'vee-validate'
-import { mapActions, mapGetters } from 'vuex'
-import route from '../../configRoutes'
+import { mapActions } from 'vuex'
 
 export default {
 	components: {
@@ -46,17 +45,9 @@ export default {
 			password: '',
 		}
 	},
-	computed: {
-		...mapGetters({
-			getRef: 'global/getRef',
-		}),
-	},
-	created() {},
-
 	methods: {
 		...mapActions({
 			signIn: 'authentication/signIn',
-			setCookie: 'global/setCookie',
 		}),
 		switchBlock() {
 			this.$emit('input', !this.value)
@@ -73,9 +64,7 @@ export default {
 					email: this.email,
 					password: this.password,
 				})
-				if (result.status) {
-					console.log('URAAA')
-				} else {
+				if (!result.status) {
 					if (result.code === 'auth/user-not-found')
 						this.$refs.email.setErrors([result.message])
 					if (result.code === 'auth/wrong-password')

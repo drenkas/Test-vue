@@ -31,7 +31,7 @@
 
 <script>
 import { ValidationProvider, ValidationObserver } from 'vee-validate'
-import { mapActions, mapGetters } from 'vuex'
+import { mapActions } from 'vuex'
 
 export default {
 	components: {
@@ -45,17 +45,9 @@ export default {
 			password: '',
 		}
 	},
-	computed: {
-		...mapGetters({
-			getRef: 'global/getRef',
-		}),
-	},
-	created() {},
-
 	methods: {
 		...mapActions({
 			signUp: 'authentication/signUp',
-			setCookie: 'global/setCookie',
 		}),
 		switchBlock() {
 			this.$emit('input', !this.value)

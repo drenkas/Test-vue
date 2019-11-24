@@ -1,6 +1,5 @@
 <template lang="pug">
 	.notFound.app__wrapper
-		img.logo(src="~@/assets/logo.png")
 
 		h3.app__title {{$t('notFound')}}
 		.notFound__form

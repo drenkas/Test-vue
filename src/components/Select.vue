@@ -4,14 +4,11 @@
 			input(:disabled="disabled" type='text', readonly ref='input', :value="value", :placeholder="placehold",  @click="toogleList" ).selectComponent__input
 		transition( name="slide")
 			.selectComponent__listWrap(v-if="showList")
-				PerfectScrollbar
-					
-					.selectComponent__list
-						.selectComponent__listItem( v-for="(item) in listItems" @click="changeSelect(item)" v-html='item') 
+				.selectComponent__list
+					.selectComponent__listItem( v-for="(item) in listItems" @click="changeSelect(item)" v-html='item') 
 </template>
 
 <script>
-import { PerfectScrollbar } from 'vue2-perfect-scrollbar'
 export default {
 	props: {
 		items: {
@@ -19,21 +16,21 @@ export default {
 		},
 		placehold: {
 			type: String,
+			default: '',
 		},
 		value: {
-			type: String,
+			type: [String, Number],
 		},
 		disabled: {
 			type: Boolean,
+			default: false,
 		},
 		alternate: {
 			type: Boolean,
 			default: false,
 		},
 	},
-	components: {
-		PerfectScrollbar,
-	},
+	components: {},
 	data() {
 		return {
 			showList: false,
@@ -53,9 +50,9 @@ export default {
 			this.showList = false
 		},
 		changeSelect(str) {
-			this.$refs.input.value = str.replace('<b>', '').replace('</b>', '')
+			this.$refs.input.value = str
 			this.showList = false
-			this.$emit('input', this.$refs.input.value)
+			this.$emit('onChange', this.$refs.input.value)
 		},
 		toogleList() {
 			if (!this.disabled) this.showList = !this.showList
@@ -152,7 +149,7 @@ export default {
 	background: #ffffff;
 	z-index: 3;
 	border-radius: 3px;
-	overflow: hidden;
+	overflow-y: scroll;
 }
 
 .selectComponent__list {
